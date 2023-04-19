@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity (tableName = "note")
-public class NoteEntity implements Serializable {
+public class Note implements Serializable {
     @PrimaryKey(autoGenerate = true)
     private int id;
     @ColumnInfo (name = "note_title")
@@ -16,10 +16,10 @@ public class NoteEntity implements Serializable {
     private String noteDescription;
 
 
-    public NoteEntity() {
+    public Note() {
     }
 
-    public NoteEntity(int id, String noteTitle, String noteDescription) {
+    public Note(int id, String noteTitle, String noteDescription) {
         this.id = id;
         this.noteTitle = noteTitle;
         this.noteDescription = noteDescription;

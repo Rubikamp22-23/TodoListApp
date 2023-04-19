@@ -12,17 +12,17 @@ import java.util.List;
 @Dao
 public interface NoteDAO {
 
-    @Query("SELECT * FROM note")
-    List<NoteEntity> getAll();
+    @Query("SELECT * FROM Note")
+    List<Note> getAll();
 
     @Insert
-    void insert(NoteEntity noteEntity);
+    void insert(Note note);
 
     @Delete
-    void delete(NoteEntity noteEntity);
+    void delete(Note note);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void update(NoteEntity noteEntity);
+    void update(Note note);
 
 
 }
