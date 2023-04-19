@@ -13,12 +13,7 @@ import com.example.todoapp.database.Note;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder> {
-
     private List<Note> notes;
-
-    public NoteAdapter(List<Note> notes) {
-        this.notes = notes;
-    }
 
     @NonNull
     @Override
@@ -30,7 +25,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder
 
     @Override
     public void onBindViewHolder(@NonNull NoteviewHolder holder, int position) {
-        Note note= notes.get(position);
+        Note note = notes.get(position);
         holder.textViewTitle.setText(note.getNoteTitle());
         holder.textViewDescription.setText(note.getNoteDescription());
     }
@@ -41,6 +36,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder
             return 0;
         }
         return notes.size();
+    }
+
+    public void addNoteItem(List<Note> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
     }
 
     class NoteviewHolder extends RecyclerView.ViewHolder {
