@@ -14,6 +14,12 @@ import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder> {
     private List<Note> notes;
+    private OnNoteItemClick onNoteItemClick;
+
+    public NoteAdapter(List<Note> notes, OnNoteItemClick onNoteItemClick) {
+        this.notes = notes;
+        this.onNoteItemClick = onNoteItemClick;
+    }
 
     @NonNull
     @Override
@@ -32,16 +38,9 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder
 
     @Override
     public int getItemCount() {
-        if (notes == null) {
-            return 0;
-        }
         return notes.size();
     }
 
-    public void addNoteItem(List<Note> notes) {
-        this.notes = notes;
-        notifyDataSetChanged();
-    }
 
     class NoteviewHolder extends RecyclerView.ViewHolder {
         AppCompatTextView textViewTitle;
@@ -51,6 +50,12 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.NoteviewHolder
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.textview_title);
             textViewDescription = itemView.findViewById(R.id.textview_description);
+
+            itemView.setOnClickListener(view -> onNoteItemClick.onNoteClick(getAdapterPosition()));
         }
+    }
+
+    public interface OnNoteItemClick {
+        void onNoteClick(int position);
     }
 }

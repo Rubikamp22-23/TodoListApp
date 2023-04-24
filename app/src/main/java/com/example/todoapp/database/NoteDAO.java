@@ -16,13 +16,16 @@ public interface NoteDAO {
     List<Note> getAll();
 
     @Insert
-    void insert(Note note);
+    long insert(Note note);
 
     @Delete
     void delete(Note note);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Note note);
+
+    @Delete
+    void delete(Note... note);
 
 
 }
